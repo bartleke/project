@@ -1,4 +1,3 @@
-dbcon.js
 var mysql = require('mysql');
 var pool = mysql.createPool({
 host : 'localhost',
@@ -15,7 +14,6 @@ var express = require('express');
 var app = express();
 var handlebars = require('express-handlebars').create({defaultLayout:'main'});
 var bodyParser = require('body-parser');
-var mysql = require('./dbcon.js');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
