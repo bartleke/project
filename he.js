@@ -7,7 +7,6 @@ database: 'student'
 });
 
 module.exports.pool = pool;
-index.js
 
 var express = require('express');
 
