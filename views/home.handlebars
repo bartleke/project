@@ -28,13 +28,13 @@
 		<th>Lbs</th> 
     </thead> 
     <tbody> 
-	  {{#each workouts}}
+	  {{#each result}}
 			<tr> 
-            <td>{{this.name}}</td>
-            <td>{{this.reps}}</td> 
-            <td>{{this.weight}}</td> 
-            <td>{{this.date}}</td> 
-            <td>{{this.lbs}}</td> 			
+            <td>{{result.name}}</td>
+            <td>{{result.reps}}</td> 
+            <td>{{result.weight}}</td> 
+            <td>{{result.date}}</td> 
+            <td>{{result.lbs}}</td> 			
 			</tr>  
 			  {{/each}}
     </tbody> 
