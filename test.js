@@ -35,7 +35,7 @@ mysql.pool.query('SELECT * FROM workouts', function(err, rows, fields){
        next(err);
        return;
    }
-      context.name = req.session.name;
+    context.name = req.session.name;
    context.reps = req.session.reps;
    context.weight = req.session.weight;
    context.date = req.session.date;
@@ -67,7 +67,7 @@ app.post('/',function(req,res){
            }
        });
    }
-
+   
    mysql.pool.query('SELECT * FROM workouts', function(err, rows, fields){
    if(err){
        next(err);

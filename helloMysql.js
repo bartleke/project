@@ -86,6 +86,44 @@ app.get('/safe-update',function(req,res,next){
   });
 });
 
+app.post('/',function(req,res){
+   var context = {};
+  
+   if(req.body['Add Entry']){
+       mysql.pool.query("INSERT INTO workouts (`name`,`reps`,`weight`,`date`,`lbs`) VALUES (?,?,?,?,?)", 
+	   [req.body.name,req.body.reps,req.body.weight,req.body.date,req.body.lbs], function(err, result){
+           if(err){
+               next(err);
+               return;
+           }
+       });
+   }
+   
+   
+   if(req.body['remove']){
+       mysql.pool.query("DELETE FROM workouts WHERE id = ?", [req.body.id], function(err, result){
+           if(err){
+               next(err);
+               return;
+           }
+       });
+   }
+   
+   mysql.pool.query('SELECT * FROM workouts', function(err, rows, fields){
+   if(err){
+       next(err);
+       return;
+   }
+   context.name = req.session.name;
+   context.reps = req.session.reps;
+   context.weight = req.session.weight;
+   context.date = req.session.date;
+   context.lbs = req.session.lbs;
+  console.log(context.toDo);
+  res.render('home',context);
+   });
+});
+
 app.get('/reset-table',function(req,res,next){
 var context = {};
 mysql.pool.query("DROP TABLE IF EXISTS workout", function(err){ 
