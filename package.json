@@ -1,8 +1,8 @@
 {
-  "name": "Database-interactions",
+  "name": "hello-world",
   "version": "1.0.0",
-  "description": "Database interactions and UI HW",
-  "main": "he.js",
+  "description": "Hello world with express and node.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
