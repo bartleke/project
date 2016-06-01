@@ -23,7 +23,7 @@ mysql.pool.query("DROP TABLE IF EXISTS workouts", function(err){
     "lbs BOOLEAN)";
     mysql.pool.query(createString, function(err){
       context.results = "Table reset";
-      res.render('exercise',context);
+      res.render('home',context);
     })
 });
 });
@@ -35,8 +35,13 @@ mysql.pool.query('SELECT * FROM workouts', function(err, rows, fields){
        next(err);
        return;
    }
-   context.exercise =    rows;
-   res.render('exercise', context);
+      context.name = req.session.name;
+   context.reps = req.session.reps;
+   context.weight = req.session.weight;
+   context.date = req.session.date;
+   context.lbs = req.session.lbs;
+  console.log(context.toDo);
+   res.render('home', context);
 });
 });
 
@@ -44,13 +49,16 @@ app.post('/',function(req,res){
    var context = {};
   
    if(req.body['Add Entry']){
-       mysql.pool.query("INSERT INTO workouts (`name`,`reps`,`weight`,`date`,`lbs`) VALUES (?,?,?,?,?)", [req.body.name,req.body.reps,req.body.weight,req.body.date,req.body.lbs], function(err, result){
+       mysql.pool.query("INSERT INTO workouts (`name`,`reps`,`weight`,`date`,`lbs`) VALUES (?,?,?,?,?)", 
+	   [req.body.name,req.body.reps,req.body.weight,req.body.date,req.body.lbs], function(err, result){
            if(err){
                next(err);
                return;
            }
        });
    }
+   
+   
    if(req.body['remove']){
        mysql.pool.query("DELETE FROM workouts WHERE id = ?", [req.body.id], function(err, result){
            if(err){
@@ -65,15 +73,20 @@ app.post('/',function(req,res){
        next(err);
        return;
    }
-   context.exercise =    rows;
-   res.render('exercise',context);
+   context.name = req.session.name;
+   context.reps = req.session.reps;
+   context.weight = req.session.weight;
+   context.date = req.session.date;
+   context.lbs = req.session.lbs;
+  console.log(context.toDo);
+  res.render('home',context);
    });
 });
 
 
 app.get('/update',function(req,res,next){
    var context = {};
-   res.render('update',context);
+   res.render('home',context);
 });
 
 app.post('/update',function(req,res,next){
@@ -93,7 +106,7 @@ mysql.pool.query("SELECT * FROM workouts WHERE id=?", [req.query.id], function(e
           return;
         }
         context.results = "Updated " + result.changedRows + " rows.";
-        res.render('update',context);
+        res.render('home',context);
       });
 });
 });
