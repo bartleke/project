@@ -114,12 +114,13 @@ app.post('/',function(req,res){
        next(err);
        return;
    }
-   context.name = req.session.name;
+  
+/*  context.name = req.session.name;
    context.reps = req.session.reps;
    context.weight = req.session.weight;
    context.date = req.session.date;
-   context.lbs = req.session.lbs;
-  console.log(context.toDo);
+   context.lbs = req.session.lbs;*/
+           res.send(JSON.stringify(rows));
   res.render('home',context);
    });
 });
@@ -155,3 +156,26 @@ app.use(function(err, req, res, next){
 app.listen(app.get('port'), function(){
   console.log('Express started on http://localhost:' + app.get('port') + '; press Ctrl-C to terminate.');
 });
+
+/*function bindButtons(deleteButton){	
+	for (var i = 0; i < deleteButton.length; i++) {
+		deleteButton[i].addEventListener('click', function (event){ 
+		var req = new XMLHttpRequest();
+		var payload = {};
+		payload.id = this.parentNode.name;
+		req.open('POST', 'http://localhost:3000/delete', true);
+		req.setRequestHeader('Content-Type', 'application/json');
+		req.addEventListener('load',function(){
+			 if(req.status >= 200 && req.status < 400){
+				 var response = JSON.parse(req.response);
+				 buildTable(response);			 
+			} else {
+			 console.log("Error in network request: " + request.statusText);
+			}
+			});
+		req.send(JSON.stringify(payload));
+		event.preventDefault();
+		}
+		);
+	}
+}	*/
