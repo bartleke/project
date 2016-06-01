@@ -1,18 +1,9 @@
-var mysql = require('mysql');
-var pool = mysql.createPool({
-host : 'localhost',
-user : 'student',
-password: 'default',
-database: 'student'
-});
-
-module.exports.pool = pool;
-
 var express = require('express');
 
 var app = express();
 var handlebars = require('express-handlebars').create({defaultLayout:'main'});
 var bodyParser = require('body-parser');
+var mysql = require('./var.js');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
