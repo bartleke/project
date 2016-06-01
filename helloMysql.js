@@ -91,7 +91,7 @@ app.post('/',function(req,res){
   
    if(req.body['Add Entry']){
        mysql.pool.query("INSERT INTO workouts (`name`,`reps`,`weight`,`date`,`lbs`) VALUES (?,?,?,?,?)", 
-        [req.query.name, req.query.reps, req.query.weight, req.query.date, req.query.lbs, req.query.id], function(err, result){
+        [req.body.name, req.body.reps, req.body.weight, req.body.date, req.body.lbs, req.body.id], function(err, result){
            if(err){
                next(err);
                return;
