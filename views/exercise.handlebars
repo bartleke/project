@@ -1,12 +1,24 @@
 <h1>Hello. Here is your Workout List!</h1>
 
+{{#if exercise}}
+<ul>
+  {{#each toDo}}
+  <li>
 <form method="post">
-  <input type="text" name="name" id="toDoName">
+  <input type="hidden" name="id" value="{{this.id}}">
+  <input type="text" name="name" value="{{this.name}}">
+  <input type="text" name="reps" value="{{this.reps}}">
+  <input type="text" name="weight" value="{{this.weight}}">
+  <input type="text" name="date" value="{{this.date}}">
+  <input type="text" name="lbs" value="{{this.lbs}}">
   <input type="submit" name="Add Exercise" value="Add Entry">
 </form>
+  </li>
+  {{/each}}
+</ul>
+{{/if}}
 
 <form method="post">
   <input type="text" name="name" id="toDoName">
   <input type="submit" name="Delete" value="remove">
 </form>
-  
