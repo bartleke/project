@@ -6,24 +6,17 @@ var bodyParser = require('body-parser');
 var mysql = require('./var.js');
 
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 app.set('port', 3000);
 
 
-/*CREATE TABLE workouts(
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(255) NOT NULL,
-    reps INT,
-    weight INT,
-    date DATE,
-    lbs BOOLEAN
-);
-*/
+
 app.get('/reset-table',function(req,res,next){
 var context = {};
-mysql.pool.query("DROP TABLE IF EXISTS workouts", function(err){ //replace your connection pool with the your variable containing the connection pool
+mysql.pool.query("DROP TABLE IF EXISTS workouts", function(err){ 
     var createString = "CREATE TABLE workouts("+
     "id INT PRIMARY KEY AUTO_INCREMENT,"+
     "name VARCHAR(255) NOT NULL,"+
@@ -33,7 +26,7 @@ mysql.pool.query("DROP TABLE IF EXISTS workouts", function(err){ //replace your 
     "lbs BOOLEAN)";
     mysql.pool.query(createString, function(err){
       context.results = "Table reset";
-      res.render('exercise',context);
+      res.render('home',context);
     })
 });
 });
@@ -45,10 +38,11 @@ mysql.pool.query('SELECT * FROM workouts', function(err, rows, fields){
        next(err);
        return;
    }
-   context.exercise =    rows;
-   res.render('exercise', context);
+    context.results = JSON.stringify(rows);
+    res.render('home', context);
 });
 });
+
 
 app.post('/',function(req,res){
    var context = {};
@@ -75,10 +69,12 @@ app.post('/',function(req,res){
        next(err);
        return;
    }
-   context.exercise =    rows;
-   res.render('exercise',context);
+   context.results = JSON.stringify(rows);
+   res.render('home',context);
    });
 });
+
+
 
 
 app.get('/update',function(req,res,next){
