@@ -152,7 +152,7 @@ app.listen(app.get('port'), function(){
   console.log('Express started on http://localhost:' + app.get('port') + '; press Ctrl-C to terminate.');
 });
 
-document.getElementById('AddEntry').addEventListener('click', function(event){
+/*document.getElementById('AddEntry').addEventListener('click', function(event){
     var req = new XMLHttpRequest();
 	var payload = {};
    	payload.id = this.parentNode.name;
