@@ -18,7 +18,7 @@ CREATE TABLE workouts(
     reps INT,
     weight INT,
     date DATE,
-    lbs BOOLEAN)
+    lbs BOOLEAN
 );
 
 /*app.get('/reset-table',function(req,res,next){
