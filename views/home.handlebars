@@ -28,8 +28,8 @@
         <th>Date</th> 
 		<th>Lbs</th> 
     </thead> 
-    <tbody> 
-	  {{#each workout}}
+    	  {{#each context}}
+	<tbody> 
 			<tr> 
             <td>{{this.name}}</td>
             <td>{{this.reps}}</td> 
@@ -51,6 +51,6 @@
             <td>{{context.date}}</td> 
             <td>{{context.lbs}}</td> 			
 			</tr>  
-			  {{/each}}
     </tbody> 
+	 {{/each}}
 </table> 
