@@ -1,3 +1,9 @@
+/*<!Name:Kelsey Bartlett>
+<!Class:CS290>
+<!Activity: Database Interactions>
+<!Credit: Textbook examples>
+<!Date:6/1/16>*/
+
 /*document.getElementById('AddEntry').addEventListener('click', function(event){
     var req = new XMLHttpRequest();
 	var payload = {};

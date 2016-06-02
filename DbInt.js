@@ -1,3 +1,20 @@
+/*<!Name:Kelsey Bartlett>
+<!Class:CS290>
+<!Activity: Database Interactions>
+<!Credit: Textbook examples>
+<!Date:6/1/16>*/
+
+
+
+//***********
+//All get methods work, but post methods will
+//not seem to return. The buttons were causing the
+//code to break, so they are included in another
+//file so you can see the work, while still
+//being able to have the other files run.
+//Working links are included.
+
+
 var express = require('express');
 var mysql = require('./dbcon.js');
 
@@ -21,6 +38,7 @@ app.get('/',function(req,res,next){
   });
 });
 
+//insert?name=sit,reps=5,weight=1,date=2015-12-5,lbs=5
 app.get('/insert',function(req,res,next){
   var context = {};
   mysql.pool.query("INSERT INTO workout (`name`,`reps`,`weight`,`date`,`lbs`) VALUES (?,?,?,?,?)", 
@@ -47,7 +65,7 @@ app.get('/delete',function(req,res,next){
 });
 
 
-///simple-update?id=2&name=The+Task&done=false&due=2015-12-5
+///update?id=1&name=push
 app.get('/update',function(req,res,next){
   var context = {};
   mysql.pool.query("UPDATE workout SET name=?, reps=?, weight=?, date=?, lbs=? WHERE id=? ",
@@ -62,7 +80,7 @@ app.get('/update',function(req,res,next){
   });
 });
 
-///safe-update?id=1&name=The+Task&done=false
+///safe-update?id=1&name=pusher
 app.get('/safe-update',function(req,res,next){
   var context = {};
   mysql.pool.query("SELECT * FROM workout WHERE id=?", [req.query.id], function(err, result){
