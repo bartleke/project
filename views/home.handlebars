@@ -7,20 +7,19 @@
   <input type="text" name="weight" value="{{this.weight}}">
   <input type="text" name="date" value="{{this.date}}">
   <input type="text" name="lbs" value="{{this.lbs}}">
-  <input type="submit" name="Add Entry" value="Add Workout">
+  <input type="submit" name="entered" value="Add Workout">
   <input type="submit" name="AddEntry" value="Add Workout">
 </form>
 
 
 <form method="post">
   <input type="text" name="name" id="toDoName">
-  <input type="submit" name="deleteb" value="remove">
+  <input type="submit" name="deleted" value="remove">
 </form>
 
 <h1>MySQL Results:</h1>
 <p>{{results}}</p>
 
-<script id="alphabet" type="text/x-handlebars-template" target="_blank">
 <table>
     <thead> 
         <th>Name</th> 
@@ -29,31 +28,15 @@
         <th>Date</th> 
 		<th>Lbs</th> 
     </thead> 
-    	  {{#each context}}
+    	  {{#each workout}}
 	<tbody> 
 			<tr> 
             <td>{{this.name}}</td>
             <td>{{this.reps}}</td> 
             <td>{{this.weight}}</td> 
             <td>{{this.date}}</td> 
-            <td>{{this.lbs}}</td> 			
-			</tr>  
-			<tr> 
-            <td>{{result.name}}</td>
-            <td>{{result.reps}}</td> 
-            <td>{{result.weight}}</td> 
-            <td>{{result.date}}</td> 
-            <td>{{result.lbs}}</td> 			
-			</tr>  
-			<tr> 
-            <td>{{req.session.name}}</td>
-            <td>{{req.session.name}}</td> 
-            <td>{{context.weight}}</td> 
-            <td>{{context.date}}</td> 
-            <td>{{context.lbs}}</td> 			
+            <td>{{this.lbs}}</td> 				
 			</tr>  
     </tbody> 
 	 {{/each}}
 </table> 
-
-</script>

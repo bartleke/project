@@ -48,7 +48,7 @@ app.get('/delete',function(req,res,next){
 
 
 ///simple-update?id=2&name=The+Task&done=false&due=2015-12-5
-app.get('/simple-update',function(req,res,next){
+app.get('/update',function(req,res,next){
   var context = {};
   mysql.pool.query("UPDATE workout SET name=?, reps=?, weight=?, date=?, lbs=? WHERE id=? ",
         [req.query.name, req.query.reps, req.query.weight, req.query.date, req.query.lbs, req.query.id],
@@ -89,7 +89,7 @@ app.get('/safe-update',function(req,res,next){
 app.post('/',function(req,res){
    var context = {};
   
-   if(req.body['Add Entry']){
+   if(req.body['entered']){
        mysql.pool.query("INSERT INTO workouts (`name`,`reps`,`weight`,`date`,`lbs`) VALUES (?,?,?,?,?)", 
         [req.body.name, req.body.reps, req.body.weight, req.body.date, req.body.lbs, req.body.id], function(err, result){
            if(err){
@@ -100,7 +100,7 @@ app.post('/',function(req,res){
    }
    
    
-   if(req.body['remove']){
+   if(req.body['deleted']){
        mysql.pool.query("DELETE FROM workouts WHERE id = ?", [req.body.id], function(err, result){
            if(err){
                next(err);
