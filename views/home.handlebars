@@ -6,13 +6,14 @@
 
 <h1>Hello. Here is your Workout List!</h1>
 
+<h2> Enter Name, Reps, Weight, Date, and Lbs </h1>
 <form method="post">
   <input type="hidden" name="id" value="{{this.id}}">
-  Name: <input type="text" name="name" value="{{this.name}}">
-  Reps: <input type="text" name="reps" value="{{this.reps}}">
-  Weight: <input type="text" name="weight" value="{{this.weight}}">
-  Date: <input type="text" name="date" value="{{this.date}}">
-  Lbs: <input type="text" name="lbs" value="{{this.lbs}}">
+  <input type="text" name="name" value="{{this.name}}">
+  <input type="text" name="reps" value="{{this.reps}}">
+  <input type="text" name="weight" value="{{this.weight}}">
+  <input type="text" name="date" value="{{this.date}}">
+  <input type="text" name="lbs" value="{{this.lbs}}">
   <input type="submit" name="entered" value="Add Workout">
   <input type="submit" name="AddEntry" value="Add Workout">
 </form>
